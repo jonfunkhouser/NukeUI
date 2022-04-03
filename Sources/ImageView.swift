@@ -169,8 +169,10 @@ public class ImageView: _PlatformBaseView {
 
     private func display(_ container: ImageContainer) {
         if let customView = makeCustomContentView(for: container) {
+            _customContentView?.removeFromSuperview()
             addContentView(customView)
             customView.isHidden = false
+            _customContentView = customView
             return
         }
 #if (os(iOS) || os(tvOS)) && !targetEnvironment(macCatalyst)
